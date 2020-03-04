@@ -8,6 +8,10 @@ import { FolderPageRoutingModule } from './folder-routing.module';
 
 import { FolderPage } from './folder.page';
 import { LoginComponent } from './login/login.component';
+import { NewsComponent } from './news/news.component';
+import { UsersComponent } from './users/users.component';
+import { TimetableComponent } from './timetable/timetable.component';
+import { ClassesComponent } from './classes/classes.component';
 
 @NgModule({
   imports: [
@@ -18,6 +22,13 @@ import { LoginComponent } from './login/login.component';
     FormsModule,
     ReactiveFormsModule
   ],
-  declarations: [FolderPage, LoginComponent]
+  declarations: [
+    FolderPage,
+    LoginComponent,
+    NewsComponent,
+    UsersComponent,
+    TimetableComponent,
+    ClassesComponent
+  ]
 })
 export class FolderPageModule { }
