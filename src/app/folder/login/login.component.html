@@ -9,7 +9,7 @@
 
                     <ion-item>
                         <ion-input type="text" value="" [formControl]="authForm.controls['username']"
-                            [ngClass]="{'error-border':!authForm.controls['username'].valid}" placeholder="Name">
+                            [ngClass]="{'error-border':!authForm.controls['username'].valid}" placeholder="Username">
                         </ion-input>
                     </ion-item>
                     <ion-item
@@ -22,7 +22,7 @@
                     </ion-item>
                     <ion-item
                         *ngIf="authForm.controls['username'].hasError('maxlength') && authForm.controls['username'].touched">
-                        <ion-text color="danger">* Maximum username length is 10!</ion-text>
+                        <ion-text color="danger">* Maximum username length is 12!</ion-text>
                     </ion-item>
 
                     <ion-item>
@@ -50,8 +50,9 @@
                         <ion-text color="danger">* Password is required!</ion-text>
                     </ion-item>
                     <ion-item
-                        *ngIf="authForm.controls['password'].hasError('minlength') && authForm.controls['password'].touched">
-                        <ion-text color="danger">* Minimum password length is 8!</ion-text>
+                        *ngIf="authForm.controls['password'].hasError('pattern') && authForm.controls['password'].touched">
+                        <ion-text color="danger">* Password must contain at least one number and one uppercase and
+                            lowercase letter, and at least 9 or more characters!</ion-text>
                     </ion-item>
 
                     <ion-item>
