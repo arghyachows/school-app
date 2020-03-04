@@ -7,8 +7,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NewsComponent implements OnInit {
 
+  selectedSegment: string = 'list';
+
   constructor() { }
 
-  ngOnInit() {}
+  ngOnInit() { }
+
+  segmentChanged(ev: any) {
+    console.log('Segment changed', ev.detail.value);
+    this.selectedSegment = ev.detail.value;
+  }
 
 }

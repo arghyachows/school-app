@@ -14,6 +14,8 @@ import { TimetableComponent } from './timetable/timetable.component';
 import { ClassesComponent } from './classes/classes.component';
 import { UserListComponent } from './users/user-list/user-list.component';
 import { AddUserComponent } from './users/add-user/add-user.component';
+import { NewsListComponent } from './news/news-list/news-list.component';
+import { AddNewsComponent } from './news/add-news/add-news.component';
 
 @NgModule({
   imports: [
@@ -32,7 +34,9 @@ import { AddUserComponent } from './users/add-user/add-user.component';
     TimetableComponent,
     ClassesComponent,
     UserListComponent,
-    AddUserComponent
+    AddUserComponent,
+    NewsListComponent,
+    AddNewsComponent
   ]
 })
 export class FolderPageModule { }

@@ -1,3 +1,13 @@
-<p>
-  news works!
-</p>
+<app-news-list *ngIf="selectedSegment == 'list'"></app-news-list>
+<app-add-news *ngIf="selectedSegment == 'add'"></app-add-news>
+
+<ion-toolbar class="user-toolbar">
+  <ion-segment (ionChange)="segmentChanged($event)" color="primary">
+    <ion-segment-button value="list">
+      <ion-icon name="copy"></ion-icon>
+    </ion-segment-button>
+    <ion-segment-button value="add">
+      <ion-icon name="add"></ion-icon>
+    </ion-segment-button>
+  </ion-segment>
+</ion-toolbar>
