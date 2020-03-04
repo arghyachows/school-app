@@ -2,7 +2,7 @@
 <app-add-user *ngIf="selectedSegment == 'add'"></app-add-user>
 
 <ion-toolbar class="user-toolbar">
-  <ion-segment (ionChange)="segmentChanged($event)">
+  <ion-segment (ionChange)="segmentChanged($event)" color="primary">
     <ion-segment-button value="list">
       <ion-icon name="people"></ion-icon>
     </ion-segment-button>
