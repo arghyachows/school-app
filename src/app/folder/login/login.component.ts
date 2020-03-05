@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ValidationErrors, AbstractControl } from '@angular/forms';
+import { LoginService } from './login.service';
+import { User } from 'src/app/models/user.model';
 
 @Component({
   selector: 'app-login',
@@ -12,8 +14,17 @@ export class LoginComponent implements OnInit {
   registerForm: FormGroup;
   loginForm: FormGroup;
   showPassword: boolean;
+  activeUser: User = {
+    realm: "",
+    username: "",
+    email: "",
+    password: "",
+    emailVerified: true,
+    id: null,
+  };
 
-  constructor(fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private loginService: LoginService) {
+
 
     //Form Group for Registration
     this.registerForm = fb.group({
@@ -37,6 +48,13 @@ export class LoginComponent implements OnInit {
   register(value: any): void {
     console.log('Form submited!')
     console.log(value);
+    this.activeUser.username = value.username;
+    this.activeUser.password = value.password;
+    this.activeUser.email = value.email;
+    this.loginService.registerUser(this.activeUser).then(response => {
+      console.log(response);
+      this.newUser = false;
+    });
   }
 
   //Fired on Login button click event

@@ -16,6 +16,7 @@ import { UserListComponent } from './users/user-list/user-list.component';
 import { AddUserComponent } from './users/add-user/add-user.component';
 import { NewsListComponent } from './news/news-list/news-list.component';
 import { AddNewsComponent } from './news/add-news/add-news.component';
+import { LoginService } from './login/login.service';
 
 @NgModule({
   imports: [
@@ -37,6 +38,9 @@ import { AddNewsComponent } from './news/add-news/add-news.component';
     AddUserComponent,
     NewsListComponent,
     AddNewsComponent
+  ],
+  providers: [
+    LoginService
   ]
 })
 export class FolderPageModule { }
