@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { User } from 'src/app/models/user.model';
-import { ToastController, LoadingController } from '@ionic/angular';
+import { ToastController } from '@ionic/angular';
 
 @Injectable()
 export class LoginService {
@@ -10,7 +10,6 @@ export class LoginService {
 
     constructor(private http: HttpClient, private toastController: ToastController) { }
 
-    //Toast Presenter
     async presentToast(message) {
         const toast = await this.toastController.create({
             message: message,
@@ -18,11 +17,7 @@ export class LoginService {
             duration: 2000
         });
         toast.present();
-
-
     }
-
-
 
     //addProduct() creates new products 
     public registerUser(user: User): Promise<any> {

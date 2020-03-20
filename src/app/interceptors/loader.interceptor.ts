@@ -20,7 +20,9 @@ export class LoaderInterceptor implements HttpInterceptor {
     //Loading Presenter
     async presentLoading() {
         this.loaderToShow = await this.loadingController.create({
-            message: 'Please wait...'
+            message: 'Please wait...',
+            translucent: true,
+            backdropDismiss: false
         });
         await this.loaderToShow.present();
 
