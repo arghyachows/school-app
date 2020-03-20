@@ -10,27 +10,42 @@ export class LoginService {
 
     constructor(private http: HttpClient, private toastController: ToastController) { }
 
-    async presentToast(message) {
+    async presentToast(message, type) {
         const toast = await this.toastController.create({
             message: message,
-            color: 'success',
+            color: type,
             duration: 2000
         });
         toast.present();
     }
 
-    //addProduct() creates new products 
+
+    //method to register User 
     public registerUser(user: User): Promise<any> {
         return this.http.post(this.userURL, JSON.stringify(user), { headers: this.headers })
             .toPromise()
-            .then(response => response)
-            .catch(this.handleError)
-            .finally(() => this.presentToast('Sign Up Successful!'));
+            .then(response => {
+                console.log("Response Caught ", response);
+                this.presentToast('Sign Up Successful!', 'success')
+            })
+            .catch(err => this.handleError(err));
         ;
     }
 
-    private handleError(error: any): Promise<any> {
-        console.error('An error occurred', error);
-        return Promise.reject(error.message || error);
+    //method to login User
+    public loginUser(user: User): Promise<any> {
+        return this.http.post(this.userURL + '/login', JSON.stringify(user), { headers: this.headers })
+            .toPromise()
+            .then(response => {
+                console.log("Response Caught ", response);
+                this.presentToast('Welcome ' + user.username + "!", 'success');
+            })
+            .catch(err => this.handleError(err));
+        ;
+    }
+
+    private handleError(err: any) {
+        console.log("Error Response Caught ", err)
+        this.presentToast(err.error.error.message, 'danger');
     }
 }

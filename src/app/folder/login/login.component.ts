@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ValidationErrors, AbstractControl } from '@angular/forms';
 import { LoginService } from './login.service';
 import { User } from 'src/app/models/user.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -19,11 +20,12 @@ export class LoginComponent implements OnInit {
     username: "",
     email: "",
     password: "",
-    emailVerified: true,
+    emailVerified: false,
     id: null,
   };
+  logged_in: boolean = false;
 
-  constructor(private fb: FormBuilder, private loginService: LoginService) {
+  constructor(private fb: FormBuilder, private loginService: LoginService, private router: Router) {
 
 
     //Form Group for Registration
@@ -61,6 +63,14 @@ export class LoginComponent implements OnInit {
   login(value: any): void {
     console.log('Form submited!')
     console.log(value);
+    this.activeUser.username = value.username;
+    this.activeUser.password = value.password;
+    this.activeUser.email = value.email;
+    this.loginService.loginUser(this.activeUser).then(response => {
+      console.log(response);
+      this.newUser = false;
+    });
+    this.router.navigate(['']);
   }
 
   //Match typed passwords while registration
