@@ -2,13 +2,15 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { User } from 'src/app/models/user.model';
 import { ToastController } from '@ionic/angular';
+import { Router } from '@angular/router';
+import { UserService } from '../users/user.service';
 
 @Injectable()
 export class LoginService {
     private userURL = "https://tutorial-app-secured-v1.herokuapp.com/api/Users";
     private headers = new HttpHeaders({ 'Content-Type': "application/json" });
 
-    constructor(private http: HttpClient, private toastController: ToastController) { }
+    constructor(private http: HttpClient, private toastController: ToastController, private router: Router, private userService: UserService) { }
 
     async presentToast(message, type) {
         const toast = await this.toastController.create({
@@ -39,6 +41,9 @@ export class LoginService {
             .then(response => {
                 console.log("Response Caught ", response);
                 this.presentToast('Welcome ' + user.username + "!", 'success');
+                this.userService.changeUser(user.username);
+                this.router.navigate(['']);
+
             })
             .catch(err => this.handleError(err));
         ;

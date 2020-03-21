@@ -26,7 +26,7 @@ export class LoginComponent implements OnInit {
   };
   logged_in: boolean = false;
 
-  constructor(private fb: FormBuilder, private loginService: LoginService, private router: Router, private userService: UserService) {
+  constructor(private fb: FormBuilder, private loginService: LoginService) {
 
 
     //Form Group for Registration
@@ -70,9 +70,7 @@ export class LoginComponent implements OnInit {
     this.loginService.loginUser(this.activeUser).then(response => {
       console.log(response);
       this.newUser = false;
-      this.userService.changeUser(this.activeUser.username);
     });
-    this.router.navigate(['']);
   }
 
   //Match typed passwords while registration
