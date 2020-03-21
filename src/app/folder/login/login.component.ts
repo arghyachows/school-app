@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators, ValidationErrors, AbstractControl }
 import { LoginService } from './login.service';
 import { User } from 'src/app/models/user.model';
 import { Router } from '@angular/router';
+import { UserService } from '../users/user.service';
 
 @Component({
   selector: 'app-login',
@@ -25,7 +26,7 @@ export class LoginComponent implements OnInit {
   };
   logged_in: boolean = false;
 
-  constructor(private fb: FormBuilder, private loginService: LoginService, private router: Router) {
+  constructor(private fb: FormBuilder, private loginService: LoginService, private router: Router, private userService: UserService) {
 
 
     //Form Group for Registration
@@ -69,6 +70,7 @@ export class LoginComponent implements OnInit {
     this.loginService.loginUser(this.activeUser).then(response => {
       console.log(response);
       this.newUser = false;
+      this.userService.changeUser(this.activeUser.username);
     });
     this.router.navigate(['']);
   }
