@@ -7,5 +7,5 @@ RUN npm run build --aot
 
 FROM nginx:alpine
 COPY --from=node /app/dist/school-project /usr/share/nginx/html
-EXPOSE 80
+EXPOSE 8080
 CMD ["nginx","-g","daemon off;"]
